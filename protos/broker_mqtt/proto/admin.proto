@@ -198,17 +198,16 @@ message SessionRaw {
 
 // --------- user --------
 message ListUserRequest {
+  // Optional query options for pagination, filtering, and sorting.
   optional QueryOptions options = 1;
 }
 
 message ListUserReply {
-  repeated UserRaw users = 1;
+  // The parameter contains a list of users, encoded from a `Vec<MqttUser>` into a binary format.
+  repeated bytes users = 1;
+  
+  // The total count of users in the cluster.
   uint32 total_count = 2;
-}
-
-message UserRaw {
-  string username = 1;
-  bool is_superuser = 3;
 }
 
 message CreateUserRequest {
